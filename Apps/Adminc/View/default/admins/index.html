@@ -1,6 +1,6 @@
 <div class="margin-large-bottom my-title-bg padding border">
     <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
-    <a href="{:U('Admins/edit')}" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+    <a href="{:U('Admins/add')}" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
 </div>
 
 <div class="panel">
@@ -15,8 +15,6 @@
                 <th>邮箱</th>
                 <th>创建时间</th>
                 <th>创建IP</th>
-                <th>上次登录时间</th>
-                <th>上次登录IP</th>
                 <th>操作</th>
             </tr>
             <volist name="list" id="v">
@@ -27,9 +25,7 @@
                 <td>{$v.nickname}</td>
                 <td>{$v.email}</td>
                 <td>{$v.create_time|date='Y-m-d H:i:s',###}</td>
-                <td>{$v.create_ip}</td>
-                <td>{$v.lastlogo_time|date='Y-m-d H:i:s',###}</td>
-                <td>{$v.lastlogo_ip}</td>
+                <td>{$v.create_ip}</td> 
                 <td><a href="{:U('edit',array('id'=>$v['id']))}" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="{$v.id}" class="icon-times mydel">删除</a></td>
             </tr>
             </volist>

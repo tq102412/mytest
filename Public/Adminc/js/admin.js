@@ -58,7 +58,7 @@ require(['jquery'],function(){
             layer.confirm('您确定要删除这条信息吗？', {
                 btn: ['确定','取消'] //按钮
             }, function(){
-                AjaxData(self_url+'/ajax_del.html',{id:id});
+                AjaxData(self_url+'/del.html',{id:id});
             });
 
             
@@ -82,7 +82,7 @@ require(['jquery'],function(){
                 layer.confirm('您确定要删除这些信息吗？', {
                     btn: ['确定','取消'] //按钮
                 }, function(){
-                    AjaxData(self_url+'/ajax_del.html',{id:ids});
+                    AjaxData(self_url+'/del.html',{id:ids});
                 });
 
             }else{
@@ -116,7 +116,7 @@ require(['jquery'],function(){
             if(method != ''  && id != ''){
                 
                 var data = {method:method,value:value,id:id};
-                AjaxData(self_url+'/ajax_set.html',data);
+                AjaxData(self_url+'/set.html',data);
             }
         })
 

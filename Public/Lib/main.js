@@ -63,6 +63,7 @@ function set_url(url,time){
 function AjaxData(url,data){
 
     $.post(url,data,function(data){
+       
         if(data.box == 0){
 
             layer.msg(data['msg']);

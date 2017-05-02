@@ -22,7 +22,7 @@ function get_md5($str){
  * @param  string  $box   设置显示类型
  * @param  string  $status  设置状态码
  * @param  string  $url   设置跳转的url
- * @return string
+ * @return array
  *
  */
 function return_array($msg,$box=1,$status=0,$url=null){

@@ -21,6 +21,9 @@
         <script src="/Public/Lib/main.js" ></script>
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
+		<script>
+			var self_url = "/index.php/Admins";
+		</script>
 
 	</head>
 
@@ -73,7 +76,7 @@
     <div class="admin">
         <div class="margin-large-bottom my-title-bg padding border">
     <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
-    <a href="<?php echo U('Admins/edit');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+    <a href="<?php echo U('Admins/add');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
 </div>
 
 <div class="panel">
@@ -88,8 +91,6 @@
                 <th>邮箱</th>
                 <th>创建时间</th>
                 <th>创建IP</th>
-                <th>上次登录时间</th>
-                <th>上次登录IP</th>
                 <th>操作</th>
             </tr>
             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
@@ -99,9 +100,7 @@
                 <td><?php echo ($v["nickname"]); ?></td>
                 <td><?php echo ($v["email"]); ?></td>
                 <td><?php echo (date('Y-m-d H:i:s',$v["create_time"])); ?></td>
-                <td><?php echo ($v["create_ip"]); ?></td>
-                <td><?php echo (date('Y-m-d H:i:s',$v["lastlogo_time"])); ?></td>
-                <td><?php echo ($v["lastlogo_ip"]); ?></td>
+                <td><?php echo ($v["create_ip"]); ?></td> 
                 <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </table>

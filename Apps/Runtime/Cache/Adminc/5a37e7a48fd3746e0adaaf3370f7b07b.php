@@ -21,6 +21,9 @@
         <script src="/Public/Lib/main.js" ></script>
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
+		<script>
+			var self_url = "/index.php/Admins";
+		</script>
 
 	</head>
 
@@ -71,8 +74,8 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="<?php echo U('edit');?>">
-    <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
+        <form method="post" id="myform" action="/index.php/Admins/add">
+    <input type="hidden" name="Id" value="<?php echo ($data["id"]); ?>" />
 	<div class="form-group">
 		<div class="label">
 			<label for="name">用户名</label>
@@ -83,10 +86,10 @@
 	</div>
 	<div class="form-group">
 		<div class="label">
-			<label for="password">密码（为空时不修改）</label>
+			<label for="pwd">密码（为空时不修改）</label>
 		</div>
 		<div class="field">
-			<input type="password" class="input" id="password" name="password"  value="" placeholder="请输入密码" />
+			<input type="password" class="input" id="pwd" name="pwd"  value="" placeholder="请输入密码" />
 		</div>
 	</div>
 	
