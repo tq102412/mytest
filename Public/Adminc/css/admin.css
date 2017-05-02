@@ -39,6 +39,34 @@ form .form-group:last-child {
 	border-bottom: solid 1px #b5cfd9;
 	padding: 23px 10px;
 }
+
+/*--------公共头部样式--------*/
+.header{
+	background: #222;
+	height:44px;
+	color:#fff;
+	line-height: 44px;
+	padding:0px 15px;
+	overflow: hidden;
+}
+
+.header a{
+	color:#fff;
+
+}
+
+.header a:hover{
+	color:#CCCCCC;
+}
+
+.header .icon-home{
+	color:#fff;
+	margin-right:5px;
+	margin-left:10px;
+	font-size:16px;
+}
+
+
 .admin-navbar {
 	border-bottom: solid 5px #09c;
 	padding: 0 15px;

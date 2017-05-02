@@ -21,7 +21,10 @@
 	</head>
 
 	<body>
-
+<div class="header">
+    <div class="float-right">超级管理员 admin <a href="/"><i class="icon-home"></i>网站首页</a></div>
+    <div class="float-left"><?php echo C('site_base_name');?>后台管理系统</div>
+</div>
 <div style="padding:2em;">
     后台首页.......
 
