@@ -10,6 +10,11 @@ class LoginController extends Controller{
     }
 
 
+    public function verify(){
 
+        $verifyService = D('Verify','Service');
+
+        $verifyService->create();
+    }
 
 }

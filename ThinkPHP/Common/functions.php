@@ -641,6 +641,7 @@ function parse_res_name($name,$layer,$level=1){
     }else{
         $module =   defined('MODULE_NAME') ? MODULE_NAME : '' ;
     }
+    
     $array  =   explode('/',$name);
     if(!C('APP_USE_NAMESPACE')){
         $class  =   parse_name($name, 1);
