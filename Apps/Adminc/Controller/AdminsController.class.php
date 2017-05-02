@@ -6,7 +6,7 @@ class AdminsController extends Controller{
 
     public function index(){
 
-
+        $this->display();
     }
 
     public function add(){
@@ -26,7 +26,7 @@ class AdminsController extends Controller{
 
     public function set(){
 
-        
+
     }
 
 

@@ -35,7 +35,7 @@
         <dd>
             <ul>
                 <li><a href="<?php echo U('Topic/index');?>">内容管理</a></li>
-                <li><a href="<?php echo U('Topic/edit');?>">添加内容</a></li>
+                <li><a href="<?php echo U('Topic/add');?>">添加内容</a></li>
             </ul>
         </dd>
     </dl>
@@ -44,7 +44,7 @@
         <dd>
             <ul>
                 <li><a href="<?php echo U('Frame/index');?>">栏目列表</a></li>
-                <li><a href="<?php echo U('Frame/edit');?>">添加栏目</a></li>
+                <li><a href="<?php echo U('Frame/add');?>">添加栏目</a></li>
             </ul>
         </dd>
     </dl>
@@ -62,7 +62,7 @@
         <dd>
             <ul>
                 <li><a href="<?php echo U('Admins/index');?>">用户列表</a></li>
-                <li><a href="<?php echo U('Admins/edit');?>">添加用户</a></li>
+                <li><a href="<?php echo U('Admins/add');?>">添加用户</a></li>
             </ul>
         </dd>
     </dl>
