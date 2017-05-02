@@ -11,10 +11,20 @@
         <meta name="description" content="<?php echo C('SYSTEM_DESCRIPTION');?>">
 		<title><?php echo C('SYSTEM_WEBNAME');?>-管理员登录</title>
 		
+		<link rel="stylesheet" href="/Public/Adminc/css/admin.css">
+		<link rel="stylesheet" href="/Public/Lib/pintuer/pintuer.css">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<link rel="bookmark" href="/favicon.ico"/>
+
+		
+
 	</head>
 
 	<body>
 
+<div style="padding:2em;">
+    后台首页.......
 
+</div>
     </body>
 </html>
