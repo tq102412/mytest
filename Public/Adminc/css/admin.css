@@ -66,6 +66,98 @@ form .form-group:last-child {
 	font-size:16px;
 }
 
+/*--------公共左侧菜单--------*/
+.leftnav{
+	width:200px;
+	height:100%;
+	color: #666;
+	position: fixed;
+	left:0px;
+	top:44px;
+	bottom:0px;
+	background-color: rgba(238,238,238,0.98);
+}
+
+.leftnav dt i:before{
+	width:15px;
+	text-align: center;
+}
+
+.leftnav dt{
+  display: block;
+  line-height: 35px;
+  padding-left: 18px;
+  padding-right: 18px;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid #e5e5e5;
+  font-weight: normal;
+}
+.leftnav dd{
+
+	padding:0px;
+	display:none;
+
+}
+.leftnav dd ul {
+  padding: 3px 8px;
+}
+
+.leftnav dd li a{
+  line-height: 32px;
+  display: block;
+  padding-left: 26px;
+  border-bottom: none;
+  font-weight: normal;
+}
+.leftnav dd li a.this{
+
+	color:#0a8;
+}
+
+.leftnav dt i{
+  color: #a0a7b1;
+  
+}
+
+/*--------公共右侧内容--------*/
+.right-content{
+	/*height:100%;
+	margin-left:200px;
+	overflow:hidden;*/
+  padding: 30px;
+  position: fixed;
+  top:44px;
+  right:0px;
+  bottom:0px;
+  left:200px;
+  overflow: auto;
+}
+
+/* 右侧内容外框 */
+.admin {
+  
+}
+
+/* 内容 */
+.content{
+	width: 100%;
+	overflow: hidden;
+}
+
+/*--------公共面包屑--------*/
+.bread{
+	background-color: #7E7E7E;
+	color:#fff;
+	margin-bottom:0px;
+}
+.bread a{
+	color:#fff;
+}
+.bread a:hover{
+	color:#222;
+}
+
 
 .admin-navbar {
 	border-bottom: solid 5px #09c;
@@ -122,17 +214,7 @@ form .form-group:last-child {
 	color: #666;
 	line-height: 36px;
 }
-.admin {
-	padding: 30px;
-	background: #fff;
-	position: fixed;
-	border-left: solid 1px #b5cfd9;
-	right: 0;
-	bottom: 0;
-	top: 87px;
-	left: 180px;
-	overflow: auto;
-}
+
 .alert {
 	margin-bottom: 20px;
 }

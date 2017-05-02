@@ -4,5 +4,6 @@ return array(
     'SYSTEM_KEYWORDS' => '',
     'SYSTEM_DESCRIPTION' => '',
     'SYSTEM_AUTHOR' => 'tongqin',
+    'SYSTEM_NAME' => 'cms',
 );
 

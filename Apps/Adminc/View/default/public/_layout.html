@@ -1,7 +1,54 @@
 <include title="管理员登录" file="public:_header"/>
 <div class="header">
     <div class="float-right">超级管理员 admin <a href="/"><i class="icon-home"></i>网站首页</a></div>
-    <div class="float-left">{:C('site_base_name')}后台管理系统</div>
+    <div class="float-left">{:C('SYSTEM_NAME')}后台管理系统</div>
 </div>
-{__CONTENT__}
+<div class="float-left leftnav border-right">
+    <dl>
+        <dt><i class="icon-file-text"></i> 内容管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="{:U('Topic/index')}">内容管理</a></li>
+                <li><a href="{:U('Topic/edit')}">添加内容</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-th-list"></i> 栏目管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="{:U('Frame/index')}">栏目列表</a></li>
+                <li><a href="{:U('Frame/edit')}">添加栏目</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-unlock-alt"></i> 权限管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="{:U('Auth/index')}">权限列表</a></li>
+                <li><a href="{:U('Group/index')}">用户组列表</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-user"></i> 管理员管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="{:U('Admins/index')}">用户列表</a></li>
+                <li><a href="{:U('Admins/edit')}">添加用户</a></li>
+            </ul>
+        </dd>
+    </dl>
+</div>
+
+<div class="right-content">
+    
+    <div class="admin">
+        {__CONTENT__}
+    </div>
+</div>
+
+
+
 <include file="public:_footer"/>

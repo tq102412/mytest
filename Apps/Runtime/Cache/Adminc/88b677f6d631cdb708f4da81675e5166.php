@@ -23,11 +23,58 @@
 	<body>
 <div class="header">
     <div class="float-right">超级管理员 admin <a href="/"><i class="icon-home"></i>网站首页</a></div>
-    <div class="float-left"><?php echo C('site_base_name');?>后台管理系统</div>
+    <div class="float-left"><?php echo C('SYSTEM_NAME');?>后台管理系统</div>
 </div>
-<div style="padding:2em;">
+<div class="float-left leftnav border-right">
+    <dl>
+        <dt><i class="icon-file-text"></i> 内容管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="<?php echo U('Topic/index');?>">内容管理</a></li>
+                <li><a href="<?php echo U('Topic/edit');?>">添加内容</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-th-list"></i> 栏目管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="<?php echo U('Frame/index');?>">栏目列表</a></li>
+                <li><a href="<?php echo U('Frame/edit');?>">添加栏目</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-unlock-alt"></i> 权限管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="<?php echo U('Auth/index');?>">权限列表</a></li>
+                <li><a href="<?php echo U('Group/index');?>">用户组列表</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt><i class="icon-user"></i> 管理员管理<i class="icon-angle-down float-right f-22"></i></dt>
+        <dd>
+            <ul>
+                <li><a href="<?php echo U('Admins/index');?>">用户列表</a></li>
+                <li><a href="<?php echo U('Admins/edit');?>">添加用户</a></li>
+            </ul>
+        </dd>
+    </dl>
+</div>
+
+<div class="right-content">
+    
+    <div class="admin">
+        <div style="padding:2em;">
     后台首页.......
 
 </div>
+    </div>
+</div>
+
+
+
     </body>
 </html>
