@@ -71,46 +71,73 @@
 <div class="right-content">
     
     <div class="admin">
-        <div class="margin-large-bottom my-title-bg padding border">
-    <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
-    <a href="<?php echo U('Admins/edit');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
-</div>
+        <form method="post" id="myform" action="<?php echo U('edit');?>">
+    <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
+	<div class="form-group">
+		<div class="label">
+			<label for="name">用户名</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入用户名" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="label">
+			<label for="password">密码（为空时不修改）</label>
+		</div>
+		<div class="field">
+			<input type="password" class="input" id="password" name="password"  value="" placeholder="请输入密码" />
+		</div>
+	</div>
+	
+    <div class="form-group">
+		<div class="label">
+			<label for="email">邮箱</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="email" name="email"  value="<?php echo ($data["email"]); ?>" placeholder="请输入邮箱" />
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="nickname">昵称</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="nickname" name="nickname"  value="<?php echo ($data["nickname"]); ?>" placeholder="请输入昵称" />
+		</div>
+	</div>
+    
 
-<div class="panel">
-    <div class="panel-head">用户管理</div>
-	<div class="panel-body">
-        <table class="table table-hover my-table">
-            <tr>
-                <th><input type="checkbox" name="" value=""></th>
-                <th>ID</th>
-                <th>用户名</th>
-                <th>用户昵称</th>
-                <th>邮箱</th>
-                <th>创建时间</th>
-                <th>创建IP</th>
-                <th>上次登录时间</th>
-                <th>上次登录IP</th>
-                <th>操作</th>
-            </tr>
-            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
-                <td><input type="checkbox" name="id" value="<?php echo ($v["id"]); ?>"></td>
-                <td><?php echo ($v["id"]); ?></td>
-                <td><?php echo ($v["name"]); ?></td>
-                <td><?php echo ($v["nickname"]); ?></td>
-                <td><?php echo ($v["email"]); ?></td>
-                <td><?php echo (date('Y-m-d H:i:s',$v["create_time"])); ?></td>
-                <td><?php echo ($v["create_ip"]); ?></td>
-                <td><?php echo (date('Y-m-d H:i:s',$v["lastlogo_time"])); ?></td>
-                <td><?php echo ($v["lastlogo_ip"]); ?></td>
-                <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>
-            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-        </table>
-        
+	<div class="form-group">
+		<div class="label">
+			<label>是否启用</label>
+		</div>
+		<div class="field">
+			<div class="button-group radio">
+
+                <?php if(($data['state']) == "0"): ?><label class="button active">
+					    <input name="state" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
+				    </label>
+                    <label class="button">
+					    <input name="state" value="1"  type="radio"><span class="icon icon-check"></span> 禁用
+				    </label>
+                <?php else: ?>
+                    <label class="button">
+					    <input name="state" value="0"  type="radio"><span class="icon icon-check"></span> 启用
+				    </label>
+                    <label class="button active">
+					    <input name="state" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
+				    </label><?php endif; ?>
+
+			</div>
+		</div>
 	</div>
-    <div class="panel-foot text-center">
-		<div class="pagination pagination-group mypage"><?php echo ($page); ?></div>
+   
+    
+    <div class="form-button">
+		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
 	</div>
-</div>
+</form>
     </div>
 </div>
 

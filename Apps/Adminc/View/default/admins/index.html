@@ -1,4 +1,42 @@
-<div style="padding:2em;">
-    后台首页.......
+<div class="margin-large-bottom my-title-bg padding border">
+    <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
+    <a href="{:U('Admins/edit')}" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+</div>
 
+<div class="panel">
+    <div class="panel-head">用户管理</div>
+	<div class="panel-body">
+        <table class="table table-hover my-table">
+            <tr>
+                <th><input type="checkbox" name="" value=""></th>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>用户昵称</th>
+                <th>邮箱</th>
+                <th>创建时间</th>
+                <th>创建IP</th>
+                <th>上次登录时间</th>
+                <th>上次登录IP</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="v">
+            <tr>
+                <td><input type="checkbox" name="id" value="{$v.id}"></td>
+                <td>{$v.id}</td>
+                <td>{$v.name}</td>
+                <td>{$v.nickname}</td>
+                <td>{$v.email}</td>
+                <td>{$v.create_time|date='Y-m-d H:i:s',###}</td>
+                <td>{$v.create_ip}</td>
+                <td>{$v.lastlogo_time|date='Y-m-d H:i:s',###}</td>
+                <td>{$v.lastlogo_ip}</td>
+                <td><a href="{:U('edit',array('id'=>$v['id']))}" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="{$v.id}" class="icon-times mydel">删除</a></td>
+            </tr>
+            </volist>
+        </table>
+        
+	</div>
+    <div class="panel-foot text-center">
+		<div class="pagination pagination-group mypage">{$page}</div>
+	</div>
 </div>

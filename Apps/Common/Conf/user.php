@@ -5,5 +5,6 @@ return array(
     'SYSTEM_DESCRIPTION' => '',
     'SYSTEM_AUTHOR' => 'tongqin',
     'SYSTEM_NAME' => 'cms',
+    'MD5_KEY' => 'tqadmin',
 );
 
