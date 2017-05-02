@@ -10,13 +10,17 @@
         <meta name="keywords" content="{:C('SYSTEM_KEYWORDS')}">
         <meta name="description" content="{:C('SYSTEM_DESCRIPTION')}">
 		<title>{:C('SYSTEM_WEBNAME')}-[title]</title>
-		
-		<link rel="stylesheet" href="__STATIC__/css/admin.css">
-		<link rel="stylesheet" href="__Lib__/pintuer/pintuer.css">
 		<link rel="shortcut icon" href="/favicon.ico"/>
 		<link rel="bookmark" href="/favicon.ico"/>
 
+		<link rel="stylesheet" href="__STATIC__/css/admin.css">
+		<link rel="stylesheet" href="__Lib__/pintuer/pintuer.css">
+
 		
+		<script src="__Lib__/require.js"></script>
+        <script src="__Lib__/main.js" ></script>
+        <script src="__STATIC__/js/admin.js" ></script>
+		<script>require(['layer','pintuer','respond']);</script>
 
 	</head>
 
