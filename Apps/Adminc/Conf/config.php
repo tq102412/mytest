@@ -6,4 +6,5 @@ return array(
 		'__STATIC__'=>'/Public/'.MODULE_NAME,
         '__Lib__'=>'/Public/Lib',
 	),
+	'LOAD_EXT_CONFIG' => 'user',
 );

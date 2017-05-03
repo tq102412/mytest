@@ -9,7 +9,7 @@
         <meta name="author" content="<?php echo C('SYSTEM_AUTHOR');?>">
         <meta name="keywords" content="<?php echo C('SYSTEM_KEYWORDS');?>">
         <meta name="description" content="<?php echo C('SYSTEM_DESCRIPTION');?>">
-		<title><?php echo C('SYSTEM_WEBNAME');?>-后台管理系统</title>
+		<title><?php echo C('SYSTEM_WEBNAME');?>-管理员登录</title>
 		<link rel="shortcut icon" href="/favicon.ico"/>
 		<link rel="bookmark" href="/favicon.ico"/>
 
@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Admins";
+			var self_url = "/index.php/Index";
 		</script>
 
 	</head>
@@ -74,73 +74,10 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="/index.php/Admins/add">
-    <input type="hidden" name="Id" value="<?php echo ($data["id"]); ?>" />
-	<div class="form-group">
-		<div class="label">
-			<label for="name">用户名</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入用户名" />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="pwd">密码（为空时不修改）</label>
-		</div>
-		<div class="field">
-			<input type="password" class="input" id="pwd" name="pwd"  value="" placeholder="请输入密码" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="email">邮箱</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="email" name="email"  value="<?php echo ($data["email"]); ?>" placeholder="请输入邮箱" />
-		</div>
-	</div>
-    <div class="form-group">
-		<div class="label">
-			<label for="nickname">昵称</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="nickname" name="nickname"  value="<?php echo ($data["nickname"]); ?>" placeholder="请输入昵称" />
-		</div>
-	</div>
-    
+        <div style="padding:2em;">
+    后台首页.......
 
-	<div class="form-group">
-		<div class="label">
-			<label>是否启用</label>
-		</div>
-		<div class="field">
-			<div class="button-group radio">
-
-                <?php if(($data['state']) == "0"): ?><label class="button active">
-					    <input name="state" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button">
-					    <input name="state" value="1"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label>
-                <?php else: ?>
-                    <label class="button">
-					    <input name="state" value="0"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button active">
-					    <input name="state" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label><?php endif; ?>
-
-			</div>
-		</div>
-	</div>
-   
-    
-    <div class="form-button">
-		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
-	</div>
-</form>
+</div>
     </div>
 </div>
 

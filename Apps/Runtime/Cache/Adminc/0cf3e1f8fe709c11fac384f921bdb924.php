@@ -9,7 +9,7 @@
         <meta name="author" content="<?php echo C('SYSTEM_AUTHOR');?>">
         <meta name="keywords" content="<?php echo C('SYSTEM_KEYWORDS');?>">
         <meta name="description" content="<?php echo C('SYSTEM_DESCRIPTION');?>">
-		<title><?php echo C('SYSTEM_WEBNAME');?>-管理员登录</title>
+		<title><?php echo C('SYSTEM_WEBNAME');?>-后台管理系统</title>
 		<link rel="shortcut icon" href="/favicon.ico"/>
 		<link rel="bookmark" href="/favicon.ico"/>
 
@@ -77,6 +77,24 @@
         <div class="margin-large-bottom my-title-bg padding border">
     <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
     <a href="<?php echo U('Admins/add');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+    <div class="form-group x3 float-right">
+		<div class="field">
+            <form id="myform" method="get" action="/index.php/Admins/index" >
+                <div class="input-group">
+                        <input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
+                    <button  type="submit" class="button">
+                        搜索</button></span>
+                </div>
+            </form>
+		</div>
+	</div>
+    <div class="form-group x3 float-right margin-right">
+		<div class="field">
+			<div class="input-group">
+				<input type="text"   id="mylaydate" class="input mylaydate" name="sdate" size="50" placeholder="时间段" />
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="panel">
@@ -110,6 +128,23 @@
 		<div class="pagination pagination-group mypage"><?php echo ($page); ?></div>
 	</div>
 </div>
+
+
+<script>
+    require(['laydate'],function(){
+        $(function(){
+            $('#mylaydate').on('click',function(){
+                laydate({
+                    choose: function(dates){ //选择好日期的回调
+                        
+                        window.location.href="/index.php/Admins/index?sdate="+dates;
+                    }
+                });
+            })
+        }) 
+    });
+</script>
+
     </div>
 </div>
 

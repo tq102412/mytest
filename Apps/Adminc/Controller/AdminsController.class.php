@@ -5,16 +5,34 @@ use Think\Controller;
 class AdminsController extends BaseController{
 
     public function index(){
+
+        $sdate = I('sdate');
+        $keywords = I('keywords');
+
+        $where = array();
+
+        if( !empty($sdate) ){
+            // 1天的最大时间 518400
+            $date_time = strtotime($sdate);
+            $where['create_time'] = array('BETWEEN',array($date_time,intval($date_time+518399)));
+        }else if( !empty($keywords) ){
+            $where['name'] = array('like',"%$keywords%");
+            $where['nickname'] = array('like',"%$keywords%");
+            $where['email'] = array('like',"%$keywords%");
+            $where['_logic'] = 'or';
+        }
+        
+       
         
         $m = M('AdminBase');
 
-        $count = $m->count();
+        $count = $m->where($where)->count();
 
         $Page = getPage($count);
         $show = $Page->show();
 
-        $list = $m->limit($Page->firstRow,$Page->listRows)->select();
-        
+        $list = $m->where($where)->limit($Page->firstRow,$Page->listRows)->order(C('ADMINS_ORDER_STR'))->select();
+       
         $this->assign('list',$list);
         $this->assign('page',$show);
 

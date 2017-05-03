@@ -8,6 +8,7 @@ require.config({
         "pintuer": "pintuer/pintuer",
         //'admin': public+"/Admin/js/admin",
         'respond': 'respond',
+        'laydate': 'laydate/laydate',
     },
     shim: {
         "kindeditor":{deps: ['css!Kindeditor/themes/default/default.css']},
@@ -62,8 +63,12 @@ function set_url(url,time){
 
 function AjaxData(url,data){
 
+    var index = layer.load(2, {
+	  shade: [0.4,'#fff'] //0.1閫忔槑搴︾殑鐧借壊鑳屾櫙
+	});
+
     $.post(url,data,function(data){
-       
+        layer.close(index);
         if(data.box == 0){
 
             layer.msg(data['msg']);

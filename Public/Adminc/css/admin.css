@@ -158,6 +158,13 @@ form .form-group:last-child {
 	color:#222;
 }
 
+/*---------------------*/
+.mylaydate{
+	background-image:url('/Public/Images/icon.png');
+	background-repeat: no-repeat;
+    background-position: right center;
+}
+
 
 .admin-navbar {
 	border-bottom: solid 5px #09c;
