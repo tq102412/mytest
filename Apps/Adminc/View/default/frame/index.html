@@ -1,4 +1,66 @@
-<div style="padding:2em;">
-    后台首页.......
-
+<div class="margin-large-bottom my-title-bg padding border">
+    <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
+    <a href="add.html" class="button bg-sub"><i class="icon-plus"></i> 添加栏目</a>
+    <div class="form-group x3 float-right">
+		<div class="field">
+            <form id="myform" method="get" action="__ACTION__" >
+                <div class="input-group">
+                        <input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
+                    <button  type="submit" class="button">
+                        搜索</button></span>
+                </div>
+            </form>
+		</div>
+	</div>
+    <div class="form-group x3 float-right margin-right">
+		<div class="field">
+			<div class="input-group">
+				<input type="text"   id="mylaydate" class="input mylaydate" name="sdate" size="50" placeholder="时间段" />
+			</div>
+		</div>
+	</div>
 </div>
+<div class="panel">
+    <div class="panel-head">栏目列表</div>
+	<div class="panel-body">
+        <table class="table table-hover my-table">
+            <tr>
+                <th><input type="checkbox" name="" value=""></th>
+                <th>ID</th>
+                <th>栏目名称</th>
+                <th>排序</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="v">
+            <tr>
+                <td><input type="checkbox" name="id" value="{$v.id}"></td>
+                <td>{$v.id}</td>
+                <td>{$v.html} {$v.title}</td>
+                <td>{$v.order}</td>
+                <td>{$v.remark}</td>
+                <td><a href="{:U('edit',array('id'=>$v['id']))}" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="{$v.id}" class="icon-times mydel">删除</a></td>
+            </tr>
+            </volist>
+        </table>
+        
+	</div>
+    <div class="panel-foot text-center">
+		<div class="pagination pagination-group mypage">{$page}</div>
+	</div>
+</div>
+
+<script>
+    require(['laydate'],function(){
+        $(function(){
+            $('#mylaydate').on('click',function(){
+                laydate({
+                    choose: function(dates){ //选择好日期的回调
+                        
+                        window.location.href="__ACTION__?sdate="+dates;
+                    }
+                });
+            })
+        }) 
+    });
+</script>

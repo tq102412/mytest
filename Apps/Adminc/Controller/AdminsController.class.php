@@ -108,7 +108,7 @@ class AdminsController extends BaseController{
         if($result === false)
             $this->ajaxReturn(return_array('删除失败'));
         else
-            $this->ajaxReturn(return_array('删除成功！'.$m->getLastSql(),0,1,0));
+            $this->ajaxReturn(return_array('删除成功！',0,1,1));
 
     }
 

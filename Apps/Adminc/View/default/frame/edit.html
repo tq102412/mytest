@@ -1,0 +1,113 @@
+
+<form method="post" id="myform" action="__ACTION__">
+    <input type="hidden" name="Id" value="{$data.id}" />
+	<div class="form-group">
+		<div class="label">
+			<label for="title">栏目标题</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title" name="title"  value="{$data.title}" placeholder="请输入栏目标题" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="label">
+			<label for="title_sub">栏目副标题</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title_sub" name="title_sub"  value="{$data.title_sub}" placeholder="请输入栏目副标题" />
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="parent_id">上级栏目</label>
+		</div>
+		<div class="field">
+			<select class="input" name="parent_id">
+				<option value="0">顶级栏目</option>
+                <volist name="list" id="v">
+                    <option value="{$v.id}" <eq name="v.id" value="$data['parent_id']"> selected="selected" </eq> >{$v.html}{$v.title}</option>
+                </volist>
+			</select>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="img">缩略图</label>
+		</div>
+		<div class="field input-inline">
+			<input type="text" class="input margin-right" size="80" name="img" id="img" value="{$data.img}"/><a class="button input-file k_btn" data-mode="image" href="javascript:void(0);">+ 浏览文件</a>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="pagesize">每页显示条数</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="pagesize" name="pagesize" value="{$data.pagesize}"  placeholder="请输入每页显示条数" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="label">
+			<label for="remark">备注</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="remark" name="remark"  value="{$data.remark}" placeholder="请输入备注信息" />
+		</div>
+	</div>
+    
+	<div class="form-group">
+		<div class="label">
+			<label>栏目导航</label>
+		</div>
+		<div class="field">
+			<div class="button-group radio">
+
+                <eq name="data['is_nav']" value="1">
+                    <label class="button active">
+                        <input name="is_nav" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 是
+                    </label>
+                    <label class="button">
+                        <input name="is_nav" value="0"  type="radio"><span class="icon icon-times"></span> 不是
+                    </label>
+                <else/>
+                    <label class="button">
+                        <input name="is_nav" value="1"  type="radio"><span class="icon icon-check"></span> 是
+                    </label>
+                    <label class="button active">
+                        <input name="is_nav" value="0"  checked="checked"  type="radio"><span class="icon icon-times"></span> 不是
+                    </label>
+                </eq>
+
+			</div>
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label>是否启用</label>
+		</div>
+		<div class="field">
+			<div class="button-group radio">
+
+                <eq name="data['state']" value="1">
+                    <label class="button active">
+					    <input name="state" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 是
+				    </label>
+                    <label class="button">
+					    <input name="state" value="0"  type="radio"><span class="icon icon-times"></span> 不是
+				    </label>
+                <else/>
+                    <label class="button">
+					    <input name="state" value="1"  type="radio"><span class="icon icon-check"></span> 是
+				    </label>
+                    <label class="button active">
+					    <input name="state" value="0"  checked="checked"  type="radio"><span class="icon icon-times"></span> 不是
+				    </label>
+                </eq>
+
+			</div>
+		</div>
+	</div>
+	<div class="form-button">
+		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
+	</div>
+</form>

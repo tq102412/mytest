@@ -12,8 +12,8 @@ var keditor_options = {
 	afterBlur: function () { //编辑器失去焦点(blur)时执行的回调函数。
 		this.sync(); // 将编辑器的HTML数据同步到textarea
 	},
-    uploadJson: "/Admin/Upload/upload.html",
-    fileManagerJson: "/Admin/Upload/manager.html"
+    //uploadJson: "/Adminc/Upload/upload.html",
+    //fileManagerJson: "/Adminc/Upload/manager.html"
 };
 
 

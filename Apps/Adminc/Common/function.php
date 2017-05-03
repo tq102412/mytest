@@ -9,19 +9,46 @@
  */
 function get_frame($frame=-1){
 
-    $m = M('frame_base');
-
-    if($frame==-1){
-        
-        $data = $m->where('fb_state = 1')->select();
+    $data = setFrameData();
+    
+    if($frame === -1){
         $data2 = serialize_frame($data);
     }else{
-        $frame = intval($frame);
-        $data2 = $m->where(array('fb_state'=>1,'fb_id'=>$frame));
+        $data2 = array_filter($data,function($v) use ($frame){ return $v['id'] == $frame;} );
     }
 
     return $data2;
 }
+
+/**
+ *
+ * 缓存栏目分类
+ * @return  array
+ *
+ */
+function setFrameData(){
+
+    $data = S('framedata');
+        
+    if($data === false){
+        $m = M('FrameBase');
+        $data = $m->where('state = 1')->select();
+        S('framedata',$data);
+    }
+
+    return $data;
+}
+
+/**
+ *
+ * 删除栏目分类缓存
+ * @return  bool
+ *
+ */
+function clearFrameData(){
+    return S('framedata',null);
+}
+
 
 /**
  *
@@ -39,12 +66,12 @@ function serialize_frame($data,$pid=0,$level=0,$html="├ "){
 
     foreach($data as $k=>$v){
 
-        if($v['fb_parent_id'] == $pid){
+        if($v['parent_id'] == $pid){
             $v['level'] = $level;
             $v['html'] = str_repeat($html,$level);
             $newdata[] = $v;
             unset($data[$k]);
-            serialize_frame($data,$v['fb_id'],$level+1);
+            serialize_frame($data,$v['id'],$level+1);
         }
        
     }
