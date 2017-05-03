@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Frame";
+			var self_url = "/index.php/Auth";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -78,44 +78,30 @@
     <div class="admin">
         <div class="margin-large-bottom my-title-bg padding border">
     <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
-    <a href="add.html" class="button bg-sub"><i class="icon-plus"></i> 添加栏目</a>
-    <div class="form-group x3 float-right">
-		<div class="field">
-            <form id="myform" method="get" action="/index.php/Frame/index" >
-                <div class="input-group">
-                        <input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
-                    <button  type="submit" class="button">
-                        搜索</button></span>
-                </div>
-            </form>
-		</div>
-	</div>
-    <div class="form-group x3 float-right margin-right">
-		<div class="field">
-			<div class="input-group">
-				<input type="text"   id="mylaydate" class="input mylaydate" name="sdate" size="50" placeholder="时间段" />
-			</div>
-		</div>
-	</div>
+    <a href="add.html" class="button bg-sub"><i class="icon-plus"></i> 添加权限</a>
 </div>
 <div class="panel">
-    <div class="panel-head">栏目列表</div>
+    <div class="panel-head">权限列表</div>
 	<div class="panel-body">
         <table class="table table-hover my-table">
             <tr>
                 <th><input type="checkbox" name="" value=""></th>
                 <th>ID</th>
-                <th>栏目名称</th>
-                <th>排序</th>
-                <th>备注</th>
+                <th>规则</th>
+                <th>名称</th>
+                <th>附加规则</th>
+                <th>状态</th>
+                <th>序号</th>
                 <th>操作</th>
             </tr>
             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
                 <td><input type="checkbox" name="id" value="<?php echo ($v["id"]); ?>"></td>
                 <td><?php echo ($v["id"]); ?></td>
+                <td><?php echo ($v["name"]); ?></td>
                 <td><?php echo ($v["html"]); ?> <?php echo ($v["title"]); ?></td>
+                <td><?php echo ($v["condition"]); ?></td>
+                <td><?php echo ($v["status"]); ?></td>
                 <td><?php echo ($v["order"]); ?></td>
-                <td><?php echo ($v["remark"]); ?></td>
                 <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </table>
@@ -125,21 +111,6 @@
 		<div class="pagination pagination-group mypage"><?php echo ($page); ?></div>
 	</div>
 </div>
-
-<script>
-    require(['laydate'],function(){
-        $(function(){
-            $('#mylaydate').on('click',function(){
-                laydate({
-                    choose: function(dates){ //选择好日期的回调
-                        
-                        window.location.href="/index.php/Frame/index?sdate="+dates;
-                    }
-                });
-            })
-        }) 
-    });
-</script>
     </div>
 </div>
 

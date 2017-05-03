@@ -5,26 +5,34 @@ use Think\Controller;
 class TopicController extends BaseController{
 
     public function index(){
+ 
+        $this->display();
+    }
+
+
+    public function ls(){
+
+
+        $fid = I('fid',0,'intval');
+
+        if($fid <= 0){
+            $this->error('对不起你访问的栏目不存在或已经删除！');
+        }
 
         $sdate = I('sdate');
         $keywords = I('keywords');
 
-        $where = array();
+        $where = array('frame'=>$fid);
 
         if( !empty($sdate) ){
             // 1天的最大时间 518400
             $date_time = strtotime($sdate);
             $where['create_time'] = array('BETWEEN',array($date_time,intval($date_time+518399)));
         }else if( !empty($keywords) ){
-            $where['name'] = array('like',"%$keywords%");
-            $where['nickname'] = array('like',"%$keywords%");
-            $where['email'] = array('like',"%$keywords%");
-            $where['_logic'] = 'or';
+            $where['title'] = array('like',"%$keywords%");
         }
         
-       
-        
-        $m = M('AdminBase');
+        $m = D('TopicBaseView');
 
         $count = $m->where($where)->count();
 
@@ -33,31 +41,56 @@ class TopicController extends BaseController{
 
         $list = $m->where($where)->limit($Page->firstRow,$Page->listRows)->order(C('TOPIC_ORDER_STR'))->select();
        
+      
         $this->assign('list',$list);
         $this->assign('page',$show);
-
         $this->display();
+
+    }
+
+    public function set(){
+
+        $method = I('post.method');
+        if( $method != 'state' && $method != 'is_top' ){
+            $this->ajaxReturn(return_array('非法提交'));
+        }
+
+        $id = I('post.id',0,'intval');
+        $value = I('post.value',0,'intval');
+
+        if(!empty($method)){
+            $m = M('TopicBase');
+            $result = $m->where(array('tb_id'=>$id))->save(array($method=>$value));
+           
+            if($result !== false)
+                $this->ajaxReturn(return_array('设置成功',0,1,1));
+            else
+                $this->ajaxReturn(return_array('设置失败'));
+        }
+
+
     }
 
     public function add(){
 
         if(IS_AJAX){
-            $pwd = I('post.pwd');
-            if(empty($pwd)) $this->ajaxReturn(return_array('密码不能为空！'));
-
-            $m = D('AdminBase');
+          
+            $m = D('TopicBase');
             if( !$m->create() ){
                 $this->ajaxReturn( return_array( $m->getError() ) );
             }else{
                 $ret = $m->add();
                 if($ret !== false)
-                    $this->ajaxReturn(return_array('添加用户信息成功！',0,1,U('index')));
+                    $this->ajaxReturn(return_array('添加信息成功！',0,1,U('ls',array('fid'=>I('frame')))));
                 else
-                    $this->ajaxReturn( return_array('添加用户信息失败！') );
+                    $this->ajaxReturn( return_array('添加信息失败！') );
             }
         }
 
+        $fid = I('fid',0,'intval');
+        $this->assign('fid',$fid);
 
+        
         $this->display('edit');
     }
 
@@ -65,7 +98,7 @@ class TopicController extends BaseController{
 
         if(IS_AJAX){
 
-            $m = D('AdminBase');
+            $m = D('TopicBase');
             
             if( !$m->create() ){
                 $this->ajaxReturn( return_array( $m->getError() ) );
@@ -74,16 +107,17 @@ class TopicController extends BaseController{
                $ret = $m->save();
                
                 if($ret !== false)
-                    $this->ajaxReturn(return_array('修改用户信息成功！',0,1,U('index')));
+                    $this->ajaxReturn(return_array('修改信息成功！',0,1,U('ls',array('fid'=>I('frame')))));
                 else
-                    $this->ajaxReturn( return_array('修改用户信息失败！') );
+                    $this->ajaxReturn( return_array('修改信息失败！') );
             }
            
         }
 
 
         $id = I('id',0,'intval');
-        $m = M('AdminBase');
+        if($id <= 0 ) $this->error( '参数错误！' );
+        $m = M('TopicBase');
         $data = $m->where('id = %d',$id)->find();
 
         $this->assign('data',$data);
@@ -98,7 +132,7 @@ class TopicController extends BaseController{
         }
         $id = json_decode(htmlspecialchars_decode($id),true);
        
-        $m = M('AdminBase');
+        $m = M('TopicBase');
 
         if(is_array($id))
             $result = $m->where(array('Id'=>array('in',$id)))->delete();

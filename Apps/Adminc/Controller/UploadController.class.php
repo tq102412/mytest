@@ -2,7 +2,7 @@
 namespace Adminc\Controller;
 use Think\Controller;
 
-class UploadController extends BaseController{
+class UploadController extends Controller{
 
     public function upload(){
         $up = D('Upload','Service');

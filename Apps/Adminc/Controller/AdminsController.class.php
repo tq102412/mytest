@@ -83,6 +83,7 @@ class AdminsController extends BaseController{
 
 
         $id = I('id',0,'intval');
+        if($id <= 0 ) $this->error( '参数错误！' );
         $m = M('AdminBase');
         $data = $m->where('id = %d',$id)->find();
 

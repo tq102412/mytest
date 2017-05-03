@@ -1,0 +1,79 @@
+<div class="panel">
+	<div class="panel-head">内容管理</div>
+	<div class="panel-body">
+		<div class="padding border-bottom">
+			<a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
+    		<a href="{:U('add',array('fid'=>$_GET['fid']))}" class="button bg-sub"><i class="icon-plus"></i> 添加文章</a>
+			
+			<div class="form-group x3 float-right">
+				<div class="field">
+					<form id="myform" method="get" action="__ACTION__" >
+						<div class="input-group">
+								<input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
+							<button  type="submit" class="button">
+								搜索</button></span>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="form-group x3 float-right margin-right">
+				<div class="field">
+					<div class="input-group">
+						<input type="text"   id="mylaydate" class="input mylaydate" name="sdate" size="50" placeholder="时间段" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<empty name="list">
+			<p class="margin padding-big">该栏目没有对应的内容！</p>
+		<else />
+		<table class="table table-hover">
+			<tr>
+				<th width="45">选择</th>
+				
+				<th width="*">标题</th>
+				<th width="50">审核</th>
+				<th width="50">置顶</th>
+				<th width="80">排序</th>
+				<th width="120">发布者</th>
+				<th width="200">发布时间</th>
+				<th width="100">操作</th>
+			</tr>
+			<volist name="list" id="v">
+			<tr>
+				<td>
+					<input type="checkbox" name="id" value="{$v.id}" />
+				</td>
+				<td><a href="{:U('Topic/edit',array('id'=>$v['id']))}">{$v.title}</a></td>
+				<td><a href="javascript:;" class="setajax" data-id="{$v.id}" data-method="state" data-value="<eq name='v.state' value='1'>0<else/>1</eq>"><i class="icon-eye <eq name='v.state' value='1'><else/>text-gray</eq>"></i></a></td>
+				<td><a href="javascript:;" class="setajax" data-id="{$v.id}" data-method="is_top" data-value="<eq name='v.is_top' value='1'>0<else/>1</eq>"><i class="icon-thumb-tack <eq name='v.is_top' value='1'><else/>text-gray</eq>"></i></a></td>
+				<td>{$v.order}</td>
+				<td>{$v.nickname}</td>
+				<td>{$v.create_time|date='Y-m-d H:i:s',###}</td>
+				<td><a class="button border-blue button-little" href="{:U('Topic/edit',array('id'=>$v['id']))}">修改</a> <a data-id="{$v.id}" class="button border-yellow button-little mydel" href="javascript:;" >删除</a></td>
+			</tr>
+			</volist>
+			
+		</table>
+
+		</empty>
+	</div>
+	<div class="panel-foot text-center">
+		<div class="pagination pagination-group mypage">{$page}</div>
+	</div>
+</div>
+
+<script>
+    require(['laydate'],function(){
+        $(function(){
+            $('#mylaydate').on('click',function(){
+                laydate({
+                    choose: function(dates){ //选择好日期的回调
+                        
+                        window.location.href="__ACTION__?sdate="+dates;
+                    }
+                });
+            })
+        }) 
+    });
+</script>

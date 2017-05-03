@@ -39,7 +39,7 @@
         <dt><i class="icon-file-text"></i> 内容管理<i class="icon-angle-down float-right f-22"></i></dt>
         <dd>
             <ul>
-                <li><a href="<?php echo U('Topic/index');?>">内容管理</a></li>
+                <li><a href="<?php echo U('Topic/index');?>">内容列表</a></li>
                 <li><a href="<?php echo U('Topic/add');?>">添加内容</a></li>
             </ul>
         </dd>
@@ -76,9 +76,14 @@
 <div class="right-content">
     
     <div class="admin">
-        <div style="padding:2em;">
-    后台首页.......
-
+        <div class="panel">
+    <div class="panel-head">栏目列表</div>
+	<div class="panel-body">
+        <ul class="list-unstyle height-big padding my-list">
+            <li>首页</li>
+            <?php $_result=get_frame();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><li><a href="<?php echo U('Topic/ls',array('fid'=>$v['id']));?>"><?php echo ($v["html"]); ?> <?php echo ($v["title"]); ?></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+        </ul>
+	</div>
 </div>
     </div>
 </div>

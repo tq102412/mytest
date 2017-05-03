@@ -1,0 +1,64 @@
+<form method="post" id="myform" action="__ACTION__">
+    <input type="hidden" name="id" value="{$data.id}" />
+    
+	<div class="form-group">
+		<div class="label">
+			<label for="title">用户组名称</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title" name="title"  value="{$data.title}" placeholder="请输入用户组名称" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="label">
+			<label for="remark">备注</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="remark" name="remark"  value="{$data.remark}" placeholder="请输入备注信息" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="label">
+			<label for="order">序号</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="order" name="order"  value="{$data.order}" placeholder="请输入序号" />
+		</div>
+	</div>
+
+   
+	<div class="form-group">
+		<div class="label">
+			<label>是否启用</label>
+		</div>
+		<div class="field">
+			<div class="button-group radio">
+
+                <eq name="data['status']" value="1">
+                    <label class="button active">
+					    <input name="status" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
+				    </label>
+                    <label class="button">
+					    <input name="status" value="0"  type="radio"><span class="icon icon-check"></span> 禁用
+				    </label>
+                <else/>
+                    <label class="button">
+					    <input name="status" value="1"  type="radio"><span class="icon icon-check"></span> 启用
+				    </label>
+                    <label class="button active">
+					    <input name="status" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
+				    </label>
+                </eq>
+
+			</div>
+		</div>
+	</div>
+   
+
+
+    <div class="form-button">
+		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
+	</div>
+</form>

@@ -13,6 +13,7 @@ function get_frame($frame=-1){
     
     if($frame === -1){
         $data2 = serialize_frame($data);
+        S('framedata',$data2);
     }else{
         $data2 = array_filter($data,function($v) use ($frame){ return $v['id'] == $frame;} );
     }
@@ -32,7 +33,7 @@ function setFrameData(){
         
     if($data === false){
         $m = M('FrameBase');
-        $data = $m->where('state = 1')->select();
+        $data = $m->where('state = 1')->order(C('FRAME_ORDER_STR'))->select();
         S('framedata',$data);
     }
 
@@ -101,6 +102,36 @@ function getPage($totalRows,$listRows=30,$parameter = array()){
 }
 
 
+/**
+ *
+ * 缓存权限规则
+ * @return  array
+ *
+ */
+function setRuleData(){
+
+    $data = S('ruledata');
+        
+    if($data === false){
+        $m = M('AuthRule');
+        $data = $m->order('`order` asc')->select();
+        S('ruledata',$data);
+    }
+
+    return $data;
+}
+
+/**
+ *
+ * 删除权限规则缓存
+ * @return  bool
+ *
+ */
+function clearRuleData(){
+    return S('ruledata',null);
+}
+
+
 
 /**
  * 拿序列化后的权限列表
@@ -110,11 +141,9 @@ function getPage($totalRows,$listRows=30,$parameter = array()){
 
 function getRuleList(){
 
-    $m = M('auth_rule');
 
-    $data = $m->order('ordernum asc')->select();
+    $data = setRuleData();
     $data2 = serialize_rule($data);
-
 
     return $data2;
 }

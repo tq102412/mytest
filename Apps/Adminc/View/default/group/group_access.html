@@ -1,0 +1,73 @@
+
+<form method="post" class="myauthform" id="myform" action="{:U('group_access')}">
+    <div class="margin-bottom bg radius border  padding-top padding-bottom padding-big-left">
+        <i class="icon-cube"></i> 菜单模块
+		<i class="icon-cubes margin-left"></i> 功能模块
+		<i class="icon-edit  margin-left"></i> 操作
+    </div>
+    
+        <volist name="list" id="vo">
+            <eq name="vo['level']" value="0">
+                <neq name="i" value="1">
+                    </div>
+                </neq>
+                    <div class="panel">
+                        <div class="panel-head">
+                            <i class="icon-cube"></i> {$vo.title}
+                        </div>
+                    <if condition="isset($list[$i])">
+                            <div class="panel-body">
+                    </if>
+            </eq>
+            
+            <eq name="vo['level']" value="1">
+                <div class="margin-bottom"><input type="checkbox" id="ids_{$vo.id}" level="1" name="access[]"  value="{$vo.id}"> <i class="icon-cubes margin-left-small "></i> <label for="ids_{$vo.id}">{$vo.title}</label></div>
+
+                <if condition="isset($list[$i])">
+                    <eq name="list[$i][level]" value="2">
+                                <div class="line-big margin-bottom myauth">
+                    </eq>
+                <else/>
+                            </div>
+                    </div>
+                </if>
+
+            </eq>
+
+            <eq name="vo['level']" value="2">
+                                    <div >
+                                        <input type="checkbox" id="ids_{$vo.id}" level="1" name="access[]"  value="{$vo.id}"><i class="icon-edit margin-left"></i> <label for="ids_{$vo.id}">{$vo.title}</label>
+                                    </div>
+                <if condition="isset($list[$i])">
+                        <eq name="list[$i][level]" value="0">
+                                </div>
+                        </eq>
+                <else/>
+                    </div>
+                </if>
+            </eq>
+
+                
+            
+    </volist>
+    <!--<div class="panel">
+        <div class="panel-head">
+            <i class="icon-cube"></i> 菜单模块
+        </div>
+        <div class="panel-body">
+            <div class="margin-bottom"><input type="checkbox" level="1" name="access[]"  value="41"> <i class="icon-cubes margin-left-small "></i> 功能模块</div>
+            <div class="line-big margin-bottom myauth">
+                <div >
+                    <input type="checkbox" level="1" name="access[]"  value="41"><i class="icon-edit margin-left"></i> <label>操作</label>
+                </div>
+                <div >
+                    <input type="checkbox" level="1" name="access[]"  value="41"><i class="icon-edit margin-left"></i> <label>操作</label>
+                </div>
+                <div >
+                    <input type="checkbox" level="1" name="access[]"  value="41"><i class="icon-edit margin-left"></i> <label>操作</label>
+                </div>
+            </div>
+            
+        </div>
+    </div>-->
+</form>

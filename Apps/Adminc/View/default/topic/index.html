@@ -1,4 +1,11 @@
-<div style="padding:2em;">
-    后台首页.......
-
+<div class="panel">
+    <div class="panel-head">栏目列表</div>
+	<div class="panel-body">
+        <ul class="list-unstyle height-big padding my-list">
+            <li>首页</li>
+            <volist name=":get_frame()" id="v">
+            <li><a href="{:U('Topic/ls',array('fid'=>$v['id']))}">{$v.html} {$v.title}</a></li>
+            </volist>
+        </ul>
+	</div>
 </div>

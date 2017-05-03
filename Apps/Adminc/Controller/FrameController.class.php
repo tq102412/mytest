@@ -85,6 +85,7 @@ class FrameController extends BaseController{
         }
 
         $id = I('id',0,'intval');
+        if($id <= 0 ) $this->error( '参数错误！' );
         $m = M('FrameBase');
         $data = $m->where('id = %d',$id)->find();
 
@@ -110,10 +111,13 @@ class FrameController extends BaseController{
         else
             $result = $m->where(array('Id'=>$id))->delete();
 
-        if($result === false)
+        if($result === false){
             $this->ajaxReturn(return_array('删除失败'));
-        else
+        }else{
+            clearFrameData();
             $this->ajaxReturn(return_array('删除成功！',0,1,1));
+        }
+            
 
     }
 

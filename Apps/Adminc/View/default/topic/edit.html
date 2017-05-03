@@ -1,0 +1,56 @@
+
+<form method="post" id="myform" action="__ACTION__">
+    <input type="hidden" name="Id" value="{$data.id}" />
+	<div class="form-group">
+		<div class="label">
+			<label for="title">文章标题</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title" name="title"  value="{$data.title}" placeholder="请输入文章标题" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="label">
+			<label for="title_sub">文章副标题</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title_sub" name="title_sub"  value="{$data.title_sub}" placeholder="请输入文章副标题" />
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="frame">所属栏目</label>
+		</div>
+		<div class="field">
+			<select class="input" name="frame" id="frame">
+				<option value="0">网站首页</option>
+                <volist name=":get_frame()" id="v">
+					<option value="{$v.id}" <if condition="$v['id'] eq $fid"> selected="selected" <elseif condition="$v['id'] eq $data['frame']" />  selected="selected"  </if> >{$v.html}{$v.title}</option>
+                </volist>
+			</select>
+		</div>
+	</div>
+
+
+    <div class="form-group">
+		<div class="label">
+			<label for="content">完整内容</label>
+		</div>
+		<div class="field">
+			<textarea class="input kindeditor" rows="5" id="content" name="content" cols="50" ></textarea>
+		</div>
+	</div>
+
+    <div class="form-group">
+		<div class="label">
+			<label for="image">缩略图</label>
+		</div>
+		<div class="field input-inline">
+			<input type="text" class="input margin-right" size="80" name="image" id="image" value="{$data.image}"/><a class="button input-file k_btn" data-mode="image" href="javascript:void(0);">+ 浏览文件</a>
+		</div>
+	</div>
+    
+	<div class="form-button">
+		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
+	</div>
+</form>

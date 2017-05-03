@@ -13,6 +13,7 @@ class AdminBaseModel extends Model{
 
     protected $_validate = array(
         array('name','require','用户名不能为空！',0,'regex',3),
+        array('name','','用户名已经存在！',1,'unique',3),
         array('nickname','require','昵称不能为空！',0,'regex',3),
     );
 
@@ -22,7 +23,9 @@ class AdminBaseModel extends Model{
         }else{
             $data['pwd'] = get_md5($data['pwd']);
         }
+        $data['order'] == '0' and $data['order'] = '999999';
     }
+
 
 
 }
