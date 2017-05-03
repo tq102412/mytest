@@ -28,7 +28,7 @@ class FrameController extends BaseController{
         $Page = getPage($count);
         $show = $Page->show();
 
-        $list = $m->where($where)->limit($Page->firstRow,$Page->listRows)->order(C('ADMINS_ORDER_STR'))->select();
+        $list = $m->where($where)->limit($Page->firstRow,$Page->listRows)->order(C('FRAME_ORDER_STR'))->select();
        
         $this->assign('list',$list);
         $this->assign('page',$show);
