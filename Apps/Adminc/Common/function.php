@@ -103,6 +103,43 @@ function getPage($totalRows,$listRows=30,$parameter = array()){
 
 
 /**
+ * 获取用户组列表
+ *
+ * @param array $list  用户组列表
+ */
+function getGroup(){
+
+    $m = M('AuthGroup');
+
+    $list = $m->where('status = 1')->select();
+
+    return $list;
+}
+
+/**
+ *
+ * 设置用户组
+ * @param int $uid  用户id
+ * @param int $group  用户组id
+ * @return  bool
+ *
+ */
+function setGroup($uid,$group){
+    $m = M('auth_group_access');
+    $data = $m->where('uid = %d', $uid)->find();
+    if(empty($data)){
+        $ret = $m->data(array('uid'=>$uid,'group_id'=>$group))->add();
+    }else{
+        $ret = $m->where(array('uid'=>$uid))->setField('group_id',$group);
+    }
+
+    
+    
+    return $ret;
+}
+
+
+/**
  *
  * 缓存权限规则
  * @return  array

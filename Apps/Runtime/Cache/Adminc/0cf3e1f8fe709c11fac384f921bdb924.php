@@ -31,7 +31,7 @@
 
 	<body>
 <div class="header">
-    <div class="float-right">超级管理员 admin <a href="/"><i class="icon-home"></i>网站首页</a></div>
+    <div class="float-right">欢迎您! <?php echo session('admin_name');?> <a href="/"><i class="icon-home"></i>网站首页</a></div>
     <div class="float-left"><?php echo C('SYSTEM_NAME');?>后台管理系统</div>
 </div>
 <div class="float-left leftnav border-right">
@@ -109,6 +109,7 @@
                 <th>用户名</th>
                 <th>用户昵称</th>
                 <th>邮箱</th>
+                <th>用户组</th>
                 <th>创建时间</th>
                 <th>创建IP</th>
                 <th>操作</th>
@@ -119,6 +120,7 @@
                 <td><?php echo ($v["name"]); ?></td>
                 <td><?php echo ($v["nickname"]); ?></td>
                 <td><?php echo ($v["email"]); ?></td>
+                <td><?php echo ($v["title"]); ?></td>
                 <td><?php echo (date('Y-m-d H:i:s',$v["create_time"])); ?></td>
                 <td><?php echo ($v["create_ip"]); ?></td> 
                 <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>

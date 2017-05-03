@@ -31,7 +31,7 @@
 
 	<body>
 <div class="header">
-    <div class="float-right">超级管理员 admin <a href="/"><i class="icon-home"></i>网站首页</a></div>
+    <div class="float-right">欢迎您! <?php echo session('admin_name');?> <a href="/"><i class="icon-home"></i>网站首页</a></div>
     <div class="float-left"><?php echo C('SYSTEM_NAME');?>后台管理系统</div>
 </div>
 <div class="float-left leftnav border-right">
@@ -109,6 +109,17 @@
 		</div>
 		<div class="field">
 			<input type="text" class="input" id="nickname" name="nickname"  value="<?php echo ($data["nickname"]); ?>" placeholder="请输入昵称" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="label">
+			<label for="group">用户组</label>
+		</div>
+		<div class="field">
+			<select class="input" name="group">
+                <?php $_result=getGroup();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><option value="<?php echo ($v["id"]); ?>" <?php if(($v["id"]) == $data['group']): ?>selected="selected"<?php endif; ?> ><?php echo ($v["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+			</select>
 		</div>
 	</div>
     

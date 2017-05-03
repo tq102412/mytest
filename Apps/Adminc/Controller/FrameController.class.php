@@ -118,7 +118,6 @@ class FrameController extends BaseController{
             $this->ajaxReturn(return_array('删除成功！',0,1,1));
         }
             
-
     }
 
    
