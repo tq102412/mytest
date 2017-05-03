@@ -40,6 +40,28 @@ form .form-group:last-child {
 	padding: 23px 10px;
 }
 
+/*--------权限分配页面样式--------*/
+.myauth{
+	padding-left:30px;
+
+}
+
+.myauth div{
+	float:left;
+	padding:0px 40px 0px 0px;
+
+}
+
+.myauthform  input{
+	vertical-align: top;
+	margin-top:3px;
+
+}
+.myauthk{
+
+	line-height:34px;
+}
+
 /*--------公共头部样式--------*/
 .header{
 	background: #222;

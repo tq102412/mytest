@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Auth";
+			var self_url = "/index.php/Group";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -76,86 +76,39 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="/index.php/Auth/add">
-    <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
+        
+<form method="post" class="myauthform" id="myform" action="<?php echo U('group_access');?>">
+    <div  class="myauthk bg radius border  padding-top padding-bottom padding-big-left">
+        <i class="icon-cube"></i> 菜单模块
+		<i class="icon-cubes margin-left"></i> 功能模块
+		<i class="icon-edit  margin-left"></i> 操作
+        <a onClick="AjaxForm('#myform')" class="button bg-sub float-right margin-right"><i class="icon-pencil"></i> 保存</a>
+    </div>
     
+    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($vo['level']) == "0"): if(($i) != "1"): ?></div><?php endif; ?>
+                    <div class="panel margin-top">
+                        <div class="panel-head">
+                            <i class="icon-cube"></i> <?php echo ($vo["title"]); ?>
+                        </div>
+                    <?php if(isset($list[$i])): ?><div class="panel-body"><?php endif; endif; ?>
+           
+            <?php if(($vo['level']) == "1"): ?><div class="margin-bottom"><input type="checkbox" id="ids_<?php echo ($vo["id"]); ?>" level="1" name="access[]"  value="<?php echo ($vo["id"]); ?>"> <i class="icon-cubes margin-left-small "></i> <label for="ids_<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></label></div>
 
-    <div class="form-group">
-		<div class="label">
-			<label for="parentid">上级栏目</label>
-		</div>
-		<div class="field">
-			<select class="input" name="parentid" id="parentid">
-				<option value="0">顶级栏目</option>
-                <?php $_result=getRuleList();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><option value="<?php echo ($v["id"]); ?>" <?php if(($v["id"]) == $data['parentid']): ?>selected="selected"<?php endif; ?> ><?php echo ($v["html"]); echo ($v["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="title">权限名称</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="title" name="title"  value="<?php echo ($data["title"]); ?>" placeholder="请输入权限名称" />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="name">权限规则</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入权限规则" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="condition">权限条件</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="condition" name="condition"  value="<?php echo ($data["condition"]); ?>" placeholder="请输入权限条件" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="ordernum">序号</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="ordernum" name="ordernum"  value="<?php echo ($data["ordernum"]); ?>" placeholder="请输入排序ID" />
-		</div>
-	</div>
-   
-	<div class="form-group">
-		<div class="label">
-			<label>是否启用</label>
-		</div>
-		<div class="field">
-			<div class="button-group radio">
-
-                <?php if(($data['status']) == "1"): ?><label class="button active">
-					    <input name="status" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button">
-					    <input name="status" value="0"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label>
+                <?php if(isset($list[$i])): if(($list[$i][level]) == "2"): ?><div class="line-big margin-bottom myauth">
+                    <?php elseif($list[$i]['level'] == 0): ?>
+                        </div><?php endif; ?>
                 <?php else: ?>
-                    <label class="button">
-					    <input name="status" value="1"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button active">
-					    <input name="status" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label><?php endif; ?>
+               
+                            </div>
+                    </div><?php endif; endif; ?>
 
-			</div>
-		</div>
-	</div>
-   
-
-
-    <div class="form-button">
-		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
-	</div>
+            <?php if(($vo['level']) == "2"): ?><div >
+                                        <input type="checkbox" id="ids_<?php echo ($vo["id"]); ?>" level="1" name="access[]"  value="<?php echo ($vo["id"]); ?>"><i class="icon-edit margin-left"></i> <label for="ids_<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></label>
+                                    </div>
+                <?php if(isset($list[$i])): if(($list[$i][level]) == "0"): ?></div><?php endif; ?>
+                <?php else: ?>
+                    </div><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+    
 </form>
     </div>
 </div>

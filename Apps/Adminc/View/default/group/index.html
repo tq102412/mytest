@@ -24,7 +24,7 @@
                 <td>{$v.status}</td>
                 <td>{$v.order}</td>
                 <td>{$v.remark}</td>
-                <td><a href="{:U('group_access',array('id'=>$v['id']))}" class="icon-magic margin-right">授权</a> <a href="{:U('edit',array('id'=>$v['id']))}" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="{$v.id}" class="icon-times mydel">删除</a></td>
+                <td><a href="{:U('rules',array('id'=>$v['id']))}" class="icon-magic margin-right">授权</a> <a href="{:U('edit',array('id'=>$v['id']))}" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="{$v.id}" class="icon-times mydel">删除</a></td>
             </tr>
             </volist>
         </table>

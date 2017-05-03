@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Auth";
+			var self_url = "/index.php/Admins";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -76,56 +76,43 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="/index.php/Auth/add">
-    <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
+        <form method="post" id="myform" action="/index.php/Admins/edit">
+    <input type="hidden" name="Id" value="<?php echo ($data["id"]); ?>" />
+	<div class="form-group">
+		<div class="label">
+			<label for="name">用户名</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入用户名" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="label">
+			<label for="pwd">密码（为空时不修改）</label>
+		</div>
+		<div class="field">
+			<input type="password" class="input" id="pwd" name="pwd"  value="" placeholder="请输入密码" />
+		</div>
+	</div>
+	
+    <div class="form-group">
+		<div class="label">
+			<label for="email">邮箱</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="email" name="email"  value="<?php echo ($data["email"]); ?>" placeholder="请输入邮箱" />
+		</div>
+	</div>
+    <div class="form-group">
+		<div class="label">
+			<label for="nickname">昵称</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="nickname" name="nickname"  value="<?php echo ($data["nickname"]); ?>" placeholder="请输入昵称" />
+		</div>
+	</div>
     
 
-    <div class="form-group">
-		<div class="label">
-			<label for="parentid">上级栏目</label>
-		</div>
-		<div class="field">
-			<select class="input" name="parentid" id="parentid">
-				<option value="0">顶级栏目</option>
-                <?php $_result=getRuleList();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><option value="<?php echo ($v["id"]); ?>" <?php if(($v["id"]) == $data['parentid']): ?>selected="selected"<?php endif; ?> ><?php echo ($v["html"]); echo ($v["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="title">权限名称</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="title" name="title"  value="<?php echo ($data["title"]); ?>" placeholder="请输入权限名称" />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="name">权限规则</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入权限规则" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="condition">权限条件</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="condition" name="condition"  value="<?php echo ($data["condition"]); ?>" placeholder="请输入权限条件" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="ordernum">序号</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="ordernum" name="ordernum"  value="<?php echo ($data["ordernum"]); ?>" placeholder="请输入排序ID" />
-		</div>
-	</div>
-   
 	<div class="form-group">
 		<div class="label">
 			<label>是否启用</label>
@@ -133,26 +120,25 @@
 		<div class="field">
 			<div class="button-group radio">
 
-                <?php if(($data['status']) == "1"): ?><label class="button active">
-					    <input name="status" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
+                <?php if(($data['state']) == "0"): ?><label class="button active">
+					    <input name="state" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
 				    </label>
                     <label class="button">
-					    <input name="status" value="0"  type="radio"><span class="icon icon-check"></span> 禁用
+					    <input name="state" value="1"  type="radio"><span class="icon icon-check"></span> 禁用
 				    </label>
                 <?php else: ?>
                     <label class="button">
-					    <input name="status" value="1"  type="radio"><span class="icon icon-check"></span> 启用
+					    <input name="state" value="0"  type="radio"><span class="icon icon-check"></span> 启用
 				    </label>
                     <label class="button active">
-					    <input name="status" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
+					    <input name="state" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
 				    </label><?php endif; ?>
 
 			</div>
 		</div>
 	</div>
    
-
-
+    
     <div class="form-button">
 		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
 	</div>

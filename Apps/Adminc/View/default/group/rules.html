@@ -1,0 +1,60 @@
+
+<form method="post" class="myauthform" id="myform" action="{:U('rules')}">
+    <input type="hidden" name="id" value="{:I('id')}" />
+    <div  class="myauthk bg radius border  padding-top padding-bottom padding-big-left">
+        <i class="icon-cube"></i> 菜单模块
+		<i class="icon-cubes margin-left"></i> 功能模块
+		<i class="icon-edit  margin-left"></i> 操作
+        <a onClick="AjaxForm('#myform')" class="button bg-sub float-right margin-right"><i class="icon-pencil"></i> 保存</a>
+    </div>
+    
+    <volist name="list" id="vo" key="i">
+        
+            <eq name="vo['level']" value="0">
+                <neq name="i" value="1">
+                    </div>
+                </neq>
+                    <div class="panel margin-top">
+                        <div class="panel-head">
+                            <i class="icon-cube"></i> {$vo.title}
+                        </div>
+                    <if condition="isset($list[$i])">
+                            <div class="panel-body">
+                    </if>
+            </eq>
+           
+            <eq name="vo['level']" value="1">
+                <div class="margin-bottom"><input <if condition="in_array($vo['id'],$rules_arr)"> checked="checked" </if> type="checkbox" id="ids_{$vo.id}" level="1" name="access[]"  value="{$vo.id}"> <i class="icon-cubes margin-left-small "></i> <label for="ids_{$vo.id}">{$vo.title}</label></div>
+
+                <if condition="isset($list[$i])">
+                     
+                    <eq name="list[$i][level]" value="2">
+                                <div class="line-big margin-bottom myauth">
+                    <elseif condition="$list[$i]['level'] eq 0" />
+                        </div>
+                    </eq>
+                <else/>
+               
+                            </div>
+                    </div>
+                </if>
+
+            </eq>
+
+            <eq name="vo['level']" value="2">
+                                    <div >
+                                        <input type="checkbox" <if condition="in_array($vo['id'],$rules_arr)"> checked="checked" </if> id="ids_{$vo.id}" level="1" name="access[]"  value="{$vo.id}"><i class="icon-edit margin-left"></i> <label for="ids_{$vo.id}">{$vo.title}</label>
+                                    </div>
+                <if condition="isset($list[$i])">
+                        <eq name="list[$i][level]" value="0">
+                                </div>
+                        </eq>
+                <else/>
+                    </div>
+                </if>
+            </eq>
+
+            
+    </volist>
+    
+</form>

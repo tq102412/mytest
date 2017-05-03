@@ -18,8 +18,8 @@ class BaseController extends Controller{
         }
 
         $auth = new Auth();
-        if(!$auth->check(CONTROLLER_NAME.'-'.ACTION_NAME,$user)){
-            //echo CONTROLLER_NAME.'-'.ACTION_NAME;
+        if(!$auth->check(CONTROLLER_NAME.'/'.ACTION_NAME,$user)){
+           // echo CONTROLLER_NAME.'/'.ACTION_NAME;
            // $this->error('你没有权限');
         }
             

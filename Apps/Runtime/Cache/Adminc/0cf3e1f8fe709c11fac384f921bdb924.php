@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Auth";
+			var self_url = "/index.php/Admins";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -76,87 +76,77 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="/index.php/Auth/add">
-    <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
-    
-
-    <div class="form-group">
-		<div class="label">
-			<label for="parentid">上级栏目</label>
-		</div>
+        <div class="margin-large-bottom my-title-bg padding border">
+    <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
+    <a href="<?php echo U('Admins/add');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+    <div class="form-group x3 float-right">
 		<div class="field">
-			<select class="input" name="parentid" id="parentid">
-				<option value="0">顶级栏目</option>
-                <?php $_result=getRuleList();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><option value="<?php echo ($v["id"]); ?>" <?php if(($v["id"]) == $data['parentid']): ?>selected="selected"<?php endif; ?> ><?php echo ($v["html"]); echo ($v["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-			</select>
+            <form id="myform" method="get" action="/index.php/Admins/index" >
+                <div class="input-group">
+                        <input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
+                    <button  type="submit" class="button">
+                        搜索</button></span>
+                </div>
+            </form>
 		</div>
 	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="title">权限名称</label>
-		</div>
+    <div class="form-group x3 float-right margin-right">
 		<div class="field">
-			<input type="text" class="input" id="title" name="title"  value="<?php echo ($data["title"]); ?>" placeholder="请输入权限名称" />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="label">
-			<label for="name">权限规则</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入权限规则" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="condition">权限条件</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="condition" name="condition"  value="<?php echo ($data["condition"]); ?>" placeholder="请输入权限条件" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="ordernum">序号</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="ordernum" name="ordernum"  value="<?php echo ($data["ordernum"]); ?>" placeholder="请输入排序ID" />
-		</div>
-	</div>
-   
-	<div class="form-group">
-		<div class="label">
-			<label>是否启用</label>
-		</div>
-		<div class="field">
-			<div class="button-group radio">
-
-                <?php if(($data['status']) == "1"): ?><label class="button active">
-					    <input name="status" value="1"  checked="checked"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button">
-					    <input name="status" value="0"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label>
-                <?php else: ?>
-                    <label class="button">
-					    <input name="status" value="1"  type="radio"><span class="icon icon-check"></span> 启用
-				    </label>
-                    <label class="button active">
-					    <input name="status" value="0"  checked="checked"  type="radio"><span class="icon icon-check"></span> 禁用
-				    </label><?php endif; ?>
-
+			<div class="input-group">
+				<input type="text"   id="mylaydate" class="input mylaydate" name="sdate" size="50" placeholder="时间段" />
 			</div>
 		</div>
 	</div>
-   
+</div>
 
-
-    <div class="form-button">
-		<button class="button" type="button" onClick="AjaxForm('#myform')" >保存</button>
+<div class="panel">
+    <div class="panel-head">用户管理</div>
+	<div class="panel-body">
+        <table class="table table-hover my-table">
+            <tr>
+                <th><input type="checkbox" name="" value=""></th>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>用户昵称</th>
+                <th>邮箱</th>
+                <th>创建时间</th>
+                <th>创建IP</th>
+                <th>操作</th>
+            </tr>
+            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+                <td><input type="checkbox" name="id" value="<?php echo ($v["id"]); ?>"></td>
+                <td><?php echo ($v["id"]); ?></td>
+                <td><?php echo ($v["name"]); ?></td>
+                <td><?php echo ($v["nickname"]); ?></td>
+                <td><?php echo ($v["email"]); ?></td>
+                <td><?php echo (date('Y-m-d H:i:s',$v["create_time"])); ?></td>
+                <td><?php echo ($v["create_ip"]); ?></td> 
+                <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>
+            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+        </table>
+        
 	</div>
-</form>
+    <div class="panel-foot text-center">
+		<div class="pagination pagination-group mypage"><?php echo ($page); ?></div>
+	</div>
+</div>
+
+
+<script>
+    require(['laydate'],function(){
+        $(function(){
+            $('#mylaydate').on('click',function(){
+                laydate({
+                    choose: function(dates){ //选择好日期的回调
+                        
+                        window.location.href="/index.php/Admins/index?sdate="+dates;
+                    }
+                });
+            })
+        }) 
+    });
+</script>
+
     </div>
 </div>
 

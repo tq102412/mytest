@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Auth";
+			var self_url = "/index.php/Group";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -76,55 +76,36 @@
 <div class="right-content">
     
     <div class="admin">
-        <form method="post" id="myform" action="/index.php/Auth/add">
+        <form method="post" id="myform" action="/index.php/Group/edit">
     <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
     
+	<div class="form-group">
+		<div class="label">
+			<label for="title">用户组名称</label>
+		</div>
+		<div class="field">
+			<input type="text" class="input" id="title" name="title"  value="<?php echo ($data["title"]); ?>" placeholder="请输入用户组名称" />
+		</div>
+	</div>
 
-    <div class="form-group">
-		<div class="label">
-			<label for="parentid">上级栏目</label>
-		</div>
-		<div class="field">
-			<select class="input" name="parentid" id="parentid">
-				<option value="0">顶级栏目</option>
-                <?php $_result=getRuleList();if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><option value="<?php echo ($v["id"]); ?>" <?php if(($v["id"]) == $data['parentid']): ?>selected="selected"<?php endif; ?> ><?php echo ($v["html"]); echo ($v["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-			</select>
-		</div>
-	</div>
 	<div class="form-group">
 		<div class="label">
-			<label for="title">权限名称</label>
+			<label for="remark">备注</label>
 		</div>
 		<div class="field">
-			<input type="text" class="input" id="title" name="title"  value="<?php echo ($data["title"]); ?>" placeholder="请输入权限名称" />
+			<input type="text" class="input" id="remark" name="remark"  value="<?php echo ($data["remark"]); ?>" placeholder="请输入备注信息" />
 		</div>
 	</div>
+
 	<div class="form-group">
 		<div class="label">
-			<label for="name">权限规则</label>
+			<label for="order">序号</label>
 		</div>
 		<div class="field">
-			<input type="text" class="input" id="name" name="name"  value="<?php echo ($data["name"]); ?>" placeholder="请输入权限规则" />
+			<input type="text" class="input" id="order" name="order"  value="<?php echo ($data["order"]); ?>" placeholder="请输入序号" />
 		</div>
 	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="condition">权限条件</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="condition" name="condition"  value="<?php echo ($data["condition"]); ?>" placeholder="请输入权限条件" />
-		</div>
-	</div>
-	
-    <div class="form-group">
-		<div class="label">
-			<label for="ordernum">序号</label>
-		</div>
-		<div class="field">
-			<input type="text" class="input" id="ordernum" name="ordernum"  value="<?php echo ($data["ordernum"]); ?>" placeholder="请输入排序ID" />
-		</div>
-	</div>
+
    
 	<div class="form-group">
 		<div class="label">

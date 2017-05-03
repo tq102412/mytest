@@ -65,8 +65,58 @@ class GroupController extends BaseController{
     }
 
 
-    public function group_access(){
+    public function rules(){
+
+        if(IS_AJAX){
+
+            $rules = I('post.access');
+            $id = I('id',0,'intval');
+
+            if(empty($id)){
+                $this->ajaxReturn( return_array('参数错误！') );
+            }
+
+            if(empty($rules)){
+                $this->ajaxReturn( return_array('请选择权限！') );
+            }
+
+            if(!is_array($rules)){
+                $this->ajaxReturn( return_array('参数错误！') );
+            }
+
+            $rules_str = implode(',',$rules);
+
+            $m = M('AuthGroup');
+
+            $ret = $m->where('id = %d',$id)->setField('rules',$rules_str);
+            
+            if($ret !== false)
+                $this->ajaxReturn(return_array('编辑权限成功！',0,1,U('index')));
+            else
+                $this->ajaxReturn( return_array('编辑权限失败！') );
+        }
+
+
+        $id = I('id',0,'intval');
+        if($id <= 0 ) $this->error( '参数错误！' );
+
+        $m = M('AuthGroup');
+        $data = $m->where('id = %d',$id)->find();
+
+        $rules_arr = null;
+
+        if(isset($data['rules'])){
+            $rules = $data['rules'];
+            $rules_arr = explode(',',$rules);
+        }
+            
+
+        $this->assign('rules_arr',$rules_arr);
+        //print_r($rules_arr);
+
+
         $list = getRuleList();
+        //print_r($list);
 
         $this->assign('list',$list);
         $this->display();
