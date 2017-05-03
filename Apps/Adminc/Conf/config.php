@@ -2,10 +2,13 @@
 return array(
 	//'配置项'=>'配置值'
 	'DEFAULT_THEME'    =>    'default',
+
 	'TMPL_PARSE_STRING'=>array(
 		'__STATIC__'=>'/Public/'.MODULE_NAME,
         '__Lib__'=>'/Public/Lib',
 	),
+	
+	'LOAD_EXT_CONFIG' => 'user',
 
 	'AUTH_CONFIG' => array(
         // 'AUTH_ON'           => true,                      // 认证开关
@@ -16,5 +19,5 @@ return array(
         'AUTH_USER'         => 'think_admin_base'             // 用户信息表
     ),
 
-	'LOAD_EXT_CONFIG' => 'user',
+	
 );

@@ -7,6 +7,8 @@ return array(
     'SYSTEM_NAME' => 'cms',
     'MD5_KEY' => 'tqadmin',
 
+    
+
 
     'ADMINS_ORDER_STR' => '`order` asc,Id desc,create_time desc',
     'FRAME_ORDER_STR' => '`order` asc,Id desc,create_time desc',

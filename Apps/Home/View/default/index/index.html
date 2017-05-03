@@ -1,0 +1,17 @@
+<include title="home" file="public:_header"/>
+<include  file="public:_nav"/>
+
+<div class="content">
+    <ul class="content_list">
+        <volist name="list" id="v">
+            <li><a href="{:U('news',array('id'=>$v['id']))}">{$v.title}</a></li>
+        </volist>
+    </ul>
+</div>
+
+
+<div class="footer">
+   
+</div>
+
+<include  file="public:_footer" />

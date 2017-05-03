@@ -22,7 +22,7 @@
         <script src="/Public/Adminc/js/admin.js" ></script>
 		<script>require(['layer','pintuer','respond']);</script>
 		<script>
-			var self_url = "/index.php/Adminc/Admins";
+			var self_url = "/index.php/Adminc/Frame";
 			keditor_options.uploadJson =  "<?php echo U('Upload/upload');?>";
     		keditor_options.fileManagerJson= "<?php echo U('Upload/manager');?>";
 		</script>
@@ -78,10 +78,10 @@
     <div class="admin">
         <div class="margin-large-bottom my-title-bg padding border">
     <a class="button bg-main mydelall"><i class="icon-trash-o"></i> 批量删除</a>
-    <a href="<?php echo U('Admins/add');?>" class="button bg-sub"><i class="icon-plus"></i> 添加用户</a>
+    <a href="add.html" class="button bg-sub"><i class="icon-plus"></i> 添加栏目</a>
     <div class="form-group x3 float-right">
 		<div class="field">
-            <form id="myform" method="get" action="/index.php/Adminc/Admins/index" >
+            <form id="myform" method="get" action="/index.php/Adminc/Frame/index" >
                 <div class="input-group">
                         <input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
                     <button  type="submit" class="button">
@@ -98,31 +98,24 @@
 		</div>
 	</div>
 </div>
-
 <div class="panel">
-    <div class="panel-head">用户管理</div>
+    <div class="panel-head">栏目列表</div>
 	<div class="panel-body">
         <table class="table table-hover my-table">
             <tr>
                 <th><input type="checkbox" name="" value=""></th>
                 <th>ID</th>
-                <th>用户名</th>
-                <th>用户昵称</th>
-                <th>邮箱</th>
-                <th>用户组</th>
-                <th>创建时间</th>
-                <th>创建IP</th>
+                <th>栏目名称</th>
+                <th>排序</th>
+                <th>备注</th>
                 <th>操作</th>
             </tr>
             <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
                 <td><input type="checkbox" name="id" value="<?php echo ($v["id"]); ?>"></td>
                 <td><?php echo ($v["id"]); ?></td>
-                <td><?php echo ($v["name"]); ?></td>
-                <td><?php echo ($v["nickname"]); ?></td>
-                <td><?php echo ($v["email"]); ?></td>
-                <td><?php echo ($v["title"]); ?></td>
-                <td><?php echo (date('Y-m-d H:i:s',$v["create_time"])); ?></td>
-                <td><?php echo ($v["create_ip"]); ?></td> 
+                <td><?php echo ($v["html"]); ?> <?php echo ($v["title"]); ?></td>
+                <td><?php echo ($v["order"]); ?></td>
+                <td><?php echo ($v["remark"]); ?></td>
                 <td><a href="<?php echo U('edit',array('id'=>$v['id']));?>" class="icon-pencil margin-right">编辑</a> <a href="javascript:;" data-id="<?php echo ($v["id"]); ?>" class="icon-times mydel">删除</a></td>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
         </table>
@@ -133,7 +126,6 @@
 	</div>
 </div>
 
-
 <script>
     require(['laydate'],function(){
         $(function(){
@@ -141,14 +133,13 @@
                 laydate({
                     choose: function(dates){ //选择好日期的回调
                         
-                        window.location.href="/index.php/Adminc/Admins/index?sdate="+dates;
+                        window.location.href="/index.php/Adminc/Frame/index?sdate="+dates;
                     }
                 });
             })
         }) 
     });
 </script>
-
     </div>
 </div>
 
