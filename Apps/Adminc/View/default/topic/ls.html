@@ -8,6 +8,7 @@
 			<div class="form-group x3 float-right">
 				<div class="field">
 					<form id="myform" method="get" action="__ACTION__" >
+						<input name="fid" type="hidden" value="{$_GET['fid']}" />
 						<div class="input-group">
 								<input type="text" class="input" name="keywords" size="50" placeholder="关键词" /><span class="addbtn">
 							<button  type="submit" class="button">
@@ -70,7 +71,7 @@
                 laydate({
                     choose: function(dates){ //选择好日期的回调
                         
-                        window.location.href="__ACTION__?sdate="+dates;
+                        window.location.href="__ACTION__?fid={$_GET['fid']}&sdate="+dates;
                     }
                 });
             })
