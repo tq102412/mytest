@@ -18,9 +18,9 @@ class BaseController extends Controller{
         }
 
         $auth = new Auth();
-        if(!$auth->check(CONTROLLER_NAME.'/'.ACTION_NAME,$user)){
+        if($user != 5 && !$auth->check(CONTROLLER_NAME.'/'.ACTION_NAME,$user)){
            // echo CONTROLLER_NAME.'/'.ACTION_NAME;
-           // $this->error('你没有权限');
+            $this->error('你没有权限');
         }
             
             

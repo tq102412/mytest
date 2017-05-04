@@ -20,8 +20,9 @@ class IndexController extends Controller {
 
         if($id <= 0) $this->error('参数错误！');
 
-        $data = M('topic_base')->where(array('id'=>$id))->find();
+        $data = M('topic_base')->where(array('Id'=>$id))->find();
 
+        
         $this->assign('data',$data);
         $this->display();
     }
