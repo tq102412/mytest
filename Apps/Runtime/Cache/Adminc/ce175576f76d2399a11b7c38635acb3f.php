@@ -77,7 +77,7 @@
     
     <div class="admin">
         
-<form method="post" id="myform" action="/index.php/Adminc/Topic/add">
+<form method="post" id="myform" action="/index.php/Adminc/Topic/edit">
     <input type="hidden" name="Id" value="<?php echo ($data["id"]); ?>" />
 	<div class="form-group">
 		<div class="label">
@@ -113,7 +113,7 @@
 			<label for="content">完整内容</label>
 		</div>
 		<div class="field">
-			<textarea class="input kindeditor" rows="5" id="content" name="content" cols="50" ></textarea>
+			<textarea class="input kindeditor" rows="5" id="content" name="content" cols="50" ><?php echo ($data["content"]); ?></textarea>
 		</div>
 	</div>
 
